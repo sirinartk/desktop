@@ -131,6 +131,13 @@ export enum FetchType {
   UserInitiatedTask,
 }
 
+/**
+ * As fast-forwarding local branches is proportional to the number of local
+ * branches, and is run after every fetch/push/pull, this is skipped when the
+ * number of eligible branches is greater than a given threshold.
+ */
+const FastForwardBranchesThreshold = 20
+
 const LastSelectedRepositoryIDKey = 'last-selected-repository-id'
 
 const defaultSidebarWidth: number = 250
@@ -2176,6 +2183,15 @@ export class AppStore extends TypedBaseStore<IAppState> {
       )
     })
 
+    if (eligibleBranches.length >= FastForwardBranchesThreshold) {
+      log.info(
+        `skipping fast-forward work because there are ${
+          eligibleBranches.length
+        } local branches - this will run again when there are less than ${FastForwardBranchesThreshold} local branches tracking remotes`
+      )
+      return
+    }
+
     for (const branch of eligibleBranches) {
       const aheadBehind = await getBranchAheadBehind(repository, branch)
       if (!aheadBehind) {
@@ -3325,7 +3341,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
         )
 
         log.error(error.message)
-        this.emitError(error)
+        return this.emitError(error)
       }
 
       await this._fetchRemote(repository, remote, FetchType.UserInitiatedTask)
@@ -3347,6 +3363,8 @@ export class AppStore extends TypedBaseStore<IAppState> {
 
       await this._checkoutBranch(repository, localBranchName)
     }
+
+    this.statsStore.recordPRBranchCheckout()
   }
 
   /**
