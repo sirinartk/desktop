@@ -222,6 +222,8 @@ export type Popup =
       type: PopupType.ConfirmDiscardChanges
       repository: Repository
       files: ReadonlyArray<WorkingDirectoryFileChange>
+      // we give users the option to stop showing confirmation
+      // but there are cases where we want to ignore that option
       forceConfirmation: boolean
     }
   | { type: PopupType.Preferences; initialSelectedTab?: PreferencesTab }
