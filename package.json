@@ -90,7 +90,7 @@
     "rimraf": "^2.5.2",
     "sass-loader": "^6.0.6",
     "semver": "^5.5.0",
-    "spectron": "^3.8.0",
+    "spectron": "^11.0.0",
     "style-loader": "^0.19.1",
     "to-camel-case": "^1.0.0",
     "ts-node": "^5.0.1",
