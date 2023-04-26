@@ -54,7 +54,7 @@
   "dependencies": {
     "ajv": "^6.4.0",
     "awesome-typescript-loader": "^3.4.0",
-    "aws-sdk": "^2.23.0",
+    "aws-sdk": "^2.1354.0",
     "babel-core": "^6.24.1",
     "babel-minify": "^0.2.0",
     "babel-webpack-plugin": "^0.1.1",
@@ -105,7 +105,7 @@
     "webpack-dev-middleware": "^2.0.3",
     "webpack-hot-middleware": "^2.21.0",
     "webpack-merge": "^4.1.0",
-    "xml2js": "^0.4.16",
+    "xml2js": "^0.5.0",
     "xvfb-maybe": "^0.2.1"
   },
   "devDependencies": {
