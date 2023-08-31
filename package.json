@@ -39,7 +39,9 @@
     "rebuild-hard:prod": "yarn clean-slate && yarn build:prod",
     "changelog": "ts-node script/changelog/index.ts",
     "draft-release": "ts-node script/draft-release/index.ts",
-    "validate-changelog": "ts-node script/validate-changelog.ts"
+    "validate-changelog": "ts-node script/validate-changelog.ts",
+    "prepare": "yarn run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "author": {
     "name": "GitHub, Inc.",
@@ -106,7 +108,8 @@
     "webpack-hot-middleware": "^2.21.0",
     "webpack-merge": "^4.1.0",
     "xml2js": "^0.4.16",
-    "xvfb-maybe": "^0.2.1"
+    "xvfb-maybe": "^0.2.1",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {
     "@types/byline": "^4.2.31",
@@ -143,5 +146,6 @@
     "electron-mocha": "^6.0.1",
     "electron-packager": "^11.0.0",
     "electron-winstaller": "2.5.2"
-  }
+  },
+  "snyk": true
 }
